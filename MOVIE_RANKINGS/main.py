@@ -15,7 +15,7 @@ Bootstrap5(app)
 
 
 class EditMovieForm(FlaskForm):
-    your_current_rating = StringField(label='Your rating out of e.g. 7.5', validators=[DataRequired(), Length(min=1, max=2)])
+    your_current_rating = StringField(label='Your rating out of e.g. 7.5', validators=[DataRequired(), Length(min=1, max=3)])
     your_review = StringField('Your Review', validators=[DataRequired(),Length(min=1, max=200)])
     done = SubmitField('Done')
 
@@ -35,6 +35,7 @@ class API_Movie_Actions():
         self.headers = {
             "Accept-Encoding": "identity",
             "Authorization": "Bearer "+str(os.getenv("BEARER"))
+            #"Authorization": "Bearer "+bearer_token
         }
 
         self.params = {
@@ -101,7 +102,7 @@ class DB_Actions():
 
     def get_movie_by_id(self,id):
         self.connect_db()
-        movie = self.cursor.execute("""SELECT * FROM movie WHERE id=?;""", (id)).fetchall()
+        movie = self.cursor.execute("""SELECT * FROM movie WHERE id=?;""", [id]).fetchall()
         #input("movie FOUND: "+str(movie))
         self.conn.commit()
         self.disconnect_db()
@@ -120,7 +121,7 @@ class DB_Actions():
 
     def delete_movie(self,id):
         self.connect_db()
-        self.cursor.execute(""" DELETE FROM movie WHERE id=?""", (id))
+        self.cursor.execute(""" DELETE FROM movie WHERE id=?""", [id])
         self.conn.commit()
 
         #input(f'UPDATED...')
@@ -151,14 +152,29 @@ class DB_Actions():
         return movies
 
 
-
+#bearer_token = ""
 
 @app.route("/")
 def home():
+    #if(bearer_token == ""):
+    #    print("ENTERED")
+    #    return render_template('insert_bearer.html')  
     db_obj = DB_Actions()
     db_obj.mountTables()
     all_movies = db_obj.order_ranking()
     return render_template("index.html",all_movies=all_movies, size_array=len(all_movies))
+
+
+# @app.route('/insert_bearer', methods=["POST","GET"])
+# def bearer_insert():
+#     token=request.form['token']
+#     if token != "":
+#         return redirect('/bearer_inserted/'+token)
+
+# @app.route('/bearer_inserted/<bearer>', methods=["POST", "GET"])
+# def insert_bearer(bearer):
+#     bearer_token = bearer
+#     return redirect('/')
 
 
 @app.route("/edit/<id>", methods = ["POST", "GET"])

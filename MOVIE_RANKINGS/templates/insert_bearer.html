@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Insert Token{% endblock %}
+
+{% block content %}
+    <form action="{{url_for('bearer_insert')}}" method="post">
+        <label class="font">TOKEN</label>
+        <input type="text" placeholder="token" name="token">
+        <button type="submit">Ok</button>
+    </form>
+
+{% endblock %}

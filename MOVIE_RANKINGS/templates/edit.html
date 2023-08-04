@@ -4,11 +4,11 @@
 
 {% block content %}
 <div class="content">
-  <h1 class="heading">{{movie[1]}}</h1>
-    <p class="description">Edit Movie Rating</p>
+  <h1 class="heading font">{{movie[1]}}</h1>
+    <p class="description font">Edit Movie Rating</p>
 
     <form method="POST" novalidate>
-      <b>{{ render_form(form) }}</b>
+      <b class="font">{{ render_form(form) }}</b>
     </form>
 </div>
 {% endblock %}

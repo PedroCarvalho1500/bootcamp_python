@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="heading">Select Movie</h1>
+    <h1 class="heading font">Select Movie</h1>
   <p>
     {% for movie in movies["results"] %}
     <a href="{{url_for('selected',title=movie.original_title, movie_id=movie.id)}}"> {{movie.original_title}} - {{movie.release_date}}</a>

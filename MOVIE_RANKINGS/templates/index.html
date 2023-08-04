@@ -4,9 +4,8 @@
 
 {% block content %}
 <div class="container">
-  <h1 class="heading">My Top 10 Movies</h1>
-  <p class="description">These are my all-time favourite movies.</p>
-  
+  <h1 class="heading font">My Top 10 Movies</h1>
+  <p class="description font">These are my all-time favourite movies.</p>
   {% set count = namespace(value=0)%}
   {% for movie in all_movies%}
     <div class="card" style="height: 28rem;">
@@ -36,5 +35,7 @@
 <div class="container text-center add">
 <a href="{{url_for('add')}}" class="button">Add Movie</a>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="{{ url_for('static', filename='../static/js/load_images.js') }}"></script>
 {% endblock %}

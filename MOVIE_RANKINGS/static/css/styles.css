@@ -1,6 +1,13 @@
 *, *:before, *:after {
 	 box-sizing: border-box;
 }
+
+
+.font{
+	color:#fff
+}
+
+
  html {
 	 font-size: 18px;
 	 line-height: 1.5;
@@ -12,11 +19,11 @@
 	 margin: 0;
 	 padding: 0;
 	 height: 100vh;
-	 background-color: #ecf0f9;
+	 background-image: linear-gradient(rgb(89, 92, 85), rgb(78, 79, 82), rgb(38, 39, 35));
 	 background-attachment: fixed;
 }
 .large {
-     font-size: 3rem;
+     font-size: 4rem;
 }
  .content {
 	 display: flex;
@@ -114,7 +121,6 @@
 	 left: 0;
 	 right: 0;
 	 bottom: 0;
-	 background: linear-gradient(135deg, #1a9be6, #1a57e6);
 	 opacity: 0.25;
 	 z-index: -1;
 }
