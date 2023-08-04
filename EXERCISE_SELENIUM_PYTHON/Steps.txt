@@ -1,0 +1,22 @@
+Step 6: Adding logs to test case
+
+	6.1: Add customLogger.py under utilities package.
+	6.2: Add logs to AccountRegistration test case.
+		
+Step 7:  Run Tests on Desired Browser(Cross Browser Testing)/Parallel
+
+	7.1: update contest.py with required fixtures which will accept command line argument (browser).
+7.2: Pass browser name as argument in command line
+
+To Run tests on desired browser
+pytest -s -v .\testCases\test_001_AccountRegistration.py --browser edge
+
+To Run tests parallel
+pytest -s -v -n=3 .\testCases\test_001_AccountRegistration.py --browser edge
+
+
+Step 8:  Generate pytest HTML Reports
+
+8.1: Update conftest.py with pytest hooks
+	
+

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}My Top 10 Movies{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1 class="heading">My Top 10 Movies</h1>
+  <p class="description">These are my all-time favourite movies.</p>
+  
+  {% set count = namespace(value=0)%}
+  {% for movie in all_movies%}
+    <div class="card" style="height: 28rem;">
+      <div class="front" style="background-image: url('{{movie[7]}}');">
+          <p class="large">{{size_array-count.value}}</p>
+      </div>
+      <div class="back">
+        <div>
+      <div class="title">{{movie[1]}} <span class="release_date">({{movie[2]}})</span></div>
+          <div class="rating">
+              <label>{{movie[4]}}</label>
+            <i class="fas fa-star star"></i>
+          </div>
+            <p class="review">"{{movie[6]}}"</p>
+          <p class="overview">
+              {{movie[3]}}
+          </p>
+          {% set count.value = count.value + 1 %}
+          <a href="{{url_for('edit',id=movie[0])}}" class="button">Update</a>
+          <a href="{{url_for('deleted',id=movie[0])}}" class="button delete-button">Delete</a>
+          
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+<div class="container text-center add">
+<a href="{{url_for('add')}}" class="button">Add Movie</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,80 @@
+Automation Framework
+---------------------
+
+what is Automation framework?
+Framework is used for organizing project related files in proper order/structure.
+
+Objectives of framework/Need of framework?
+-> Re-usuability
+-> Maintainability
+
+Types of frameworks
+------------
+1) Pre-defined frameworks / Ready made 
+
+	Unittest,pytest,Behave,Robot framework etc....
+
+2) User defined /Customized frameworks
+	Data Driven framework
+	Keyword driven framework
+	Modular framework
+	Hybrid driven framework 
+
+Steps/Phases
+---------------
+1) Feasibility Analysis/Reasearch
+2) choose test cases for automation
+3) Desing and implement framework
+4) Execution
+5) Maintanance
+
+	P1 - Data driven test cases/ re-test cases
+	P2- Sanity/Regression test cases
+	P3-other test cases
+
+
+100 tc's  ---90 tc automatable 10 not automatable
+
+
+Project(Application/Product)
+--------------------------
+Open Cart (e-commerce)
+
+ecommerce
+---------------
+1) Frontent app( users/customers)
+2) Backed  app ( admins)
+
+
+database (MySQL)
+
+Technologies
+------------
+Frontent: HTML, Bootstrap, PHP
+Backend: MySQL
+Application server: Tomcat
+
+-------------------------------------
+Automation Framework implementation
+--------------------------------
+Step 1: Create new Project & Install Required Packages/plugins
+
+Pytest – Python built-in unit test framework (5.4.3 Preferred)
+selenium  - selenium libraries
+webdriver-manager – for drivers
+pytest-html – reports
+pytest-xdist  - parallel testing
+openpyxl – xl file
+allure-pytest  - report
+
+Create requirements.txt file contains all packages and install it.
+
+Step 2: Create Folder Structure
+
+
+
+
+
+
+
+

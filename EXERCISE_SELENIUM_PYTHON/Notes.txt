@@ -1,0 +1,19 @@
+Step 3: Automating Register account test case
+
+	3.1: Create page object classes for HomePage & AccountRegistration page under "pageObjects"
+	
+	3.2: Create conftest.py under "testCases" with driver manager.
+
+	3.3: Create AccountRegistration testcase under "testCases"
+
+	3.4 Write a utility file to generate random string for email.
+	
+Step 4: capture screenshot on failures
+	4.1.  Update AccountRegistration Test case with capture Screenshot under "testCases"
+
+Step 5:  Read common values from ini file.
+
+	5.1: Add "config.ini" file in "configurations" folder.
+	5.2: Create "readProperties.py" utility file under utilities package to read common data. 
+	5.3: Replace hard coded values in AccountRegistration testcase.
+
