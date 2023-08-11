@@ -184,14 +184,16 @@ def load_user(user_id):
 @app.route('/')
 def home():
     db_obj.mountTables()
-    return render_template("index.html")
+    #input("LOGGED? "+str(bool(current_user.is_authenticated)))
+    if(bool(current_user.is_authenticated) == True): flash('You are already logged in!')
+    return render_template("index.html", logged_in=str(bool(current_user.is_authenticated)))
 
 
 @app.route('/register', methods=["GET", "POST"])
 @login_required
 def register():
     #new_register_form = RegisterForm()
-
+    error = None
     return render_template("register.html")
 
 
@@ -199,24 +201,34 @@ def register():
 def registered():
     name = request.form['name']
     email = request.form['email']
-    password = werkzeug.security.generate_password_hash(request.form['password'], method='sha256', salt_length=8)
+    error = None
 
+    try:
+        email_already_exists = db_obj.get_user_id_by_email(email)
+        error = 'You\' already signed up with that email, log in instead!'
+        return render_template("register.html", error=error)
+
+    except:
+        password = werkzeug.security.generate_password_hash(request.form['password'], method='sha256', salt_length=8)
+        db_obj.insert_new_register(name,email,password)
+        new_user = User(db_obj.get_user_id_by_email(email)[0],email,password,name)
+        #input("EMAIL DOESN'T EXIST")
+        logout_user()
+        Us = load_user(db_obj.get_user_id_by_email(email)[0])
+        login_user(Us)
+
+        return redirect('/secrets/'+str(email))
+
+    #except:
+    #    error = 'You\' already signed up with that email, log in instead!'
     
-    db_obj.insert_new_register(name,email,password)
+    #return render_template('/register.html', error=error)
 
-    #input("HERE...")
-    new_user = User(db_obj.get_user_id_by_email(email)[0],email,password,name)
-    #input(db_obj.get_user_id_by_email(email)[0])
-    logout_user()
-    Us = load_user(db_obj.get_user_id_by_email(email)[0])
-    login_user(Us)
-
-    return redirect('/secrets/'+str(email))
 
 
 @app.route('/login', methods=["POST", "GET"])
 def login():
-
+    logout_user()
     return render_template("login.html")
 
 

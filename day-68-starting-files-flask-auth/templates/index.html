@@ -3,14 +3,26 @@
 <div class="box">
   <h1>Flask Authentication</h1>
   <!-- TODO: Hide the Login/Registration buttons for logged-in users -->
-  <a href="{{ url_for('login') }}" class="btn btn-primary btn-block btn-large"
-    >Login</a
-  >
-  <a
+
+  {% if logged_in == 'False' %}
+    <a href="{{ url_for('login') }}" class="btn btn-primary btn-block btn-large"
+      >Login</a
+    >
+  {% else %}
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashes">
+        </ul>
+      {% endif %}
+    {% endwith %}  
+
+  {% endif %}
+    <a
     href="{{ url_for('register') }}"
     class="btn btn-secondary btn-block btn-large"
     >Register</a
   >
+  
 </div>
 
 {% endblock %}
