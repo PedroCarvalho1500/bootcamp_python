@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form %}
+{% block title %}Add New Task{% endblock %}
+
+{% block content %}
+<body class="gradient-background">
+    <div class="content gradient-background text_white">
+        <h1 class="heading font">Add New Task</h1>
+        <form method="POST" novalidate>
+            <b class="font">{{ render_form(form) }}</b>
+        </form>
+    </div>
+</body>
+{% endblock %}
